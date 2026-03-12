@@ -26,6 +26,24 @@ const Content = ({ htmlContent }: { htmlContent: string }) => {
           color: var(--ink);
           font-weight: 300;
           max-width: 720px;
+          width: 100%;
+        }
+
+        /* Keep content from causing horizontal scroll */
+        .doc-body * {
+          max-width: 100%;
+        }
+
+        /* Better mobile typography */
+        @media (max-width: 640px) {
+          .doc-body {
+            font-size: 14px;
+            line-height: 1.8;
+          }
+          .doc-body h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+          }
         }
 
         /* ── Headings ── */
@@ -223,6 +241,14 @@ const Content = ({ htmlContent }: { htmlContent: string }) => {
           border-collapse: collapse;
           margin: 1.5rem 0;
           font-size: 0.88rem;
+          display: block;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        .doc-body table::-webkit-scrollbar { height: 6px; }
+        .doc-body table::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 999px;
         }
         .doc-body th {
           font-family: 'DM Mono', monospace;
@@ -242,6 +268,12 @@ const Content = ({ htmlContent }: { htmlContent: string }) => {
           font-weight: 300;
         }
         .doc-body tr:last-child td { border-bottom: none; }
+
+        /* Long URLs / tokens */
+        .doc-body p, .doc-body li {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
 
         /* ── Checkbox lists (your checklist) ── */
         .doc-body li:has(input[type="checkbox"]) {

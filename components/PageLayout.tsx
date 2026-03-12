@@ -15,6 +15,7 @@ export default function PageLayout({
   allFrontMatter,
 }: PageLayoutProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   return (
     <>
@@ -23,12 +24,15 @@ export default function PageLayout({
         allFrontMatter={allFrontMatter}
         selectedIndex={selectedIndex}
         onSelect={setSelectedIndex}
+        mobileOpen={mobileSidebarOpen}
+        onMobileClose={() => setMobileSidebarOpen(false)}
       />
 
       {/* ── MAIN CONTENT + RIGHT TOC ── */}
       <DocSelector
         allMarkdownData={allMarkdownData}
         selectedIndex={selectedIndex}
+        onOpenSidebar={() => setMobileSidebarOpen(true)}
       />
     </>
   );

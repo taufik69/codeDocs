@@ -42,37 +42,6 @@ const TableOfContents = ({ headings }: { headings: Heading[] }) => {
     
       @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
       
-        .toc-wrap {
-          flex-shrink: 0;
-          background: #f9f9fb;
-          border-left: 1px solid #e8e8f0;
-          padding: 32px 0;
-          overflow-y: auto;
-          height: 100vh;
-          position: sticky;
-          width:100%;
-          top: 0;
-        }
-
-        .toc-label {
-    
-          font-size: 9px;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: #a0a0b8;
-          padding: 0 18px;
-          margin-bottom: 16px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .toc-label::after {
-          content: '';
-          flex: 1;
-          height: 1px;
-          background: #e4e4ef;
-        }
-
         .toc-list {
           list-style: none;
           padding: 0;
@@ -90,7 +59,7 @@ const TableOfContents = ({ headings }: { headings: Heading[] }) => {
           line-height: 1.4;
           position: relative;
           transition: all 0.18s ease;
-           margin-left: 10px;
+          margin-left: 10px;
           margin-bottom: 10px;
         }
 
@@ -159,28 +128,24 @@ const TableOfContents = ({ headings }: { headings: Heading[] }) => {
         }
       `}</style>
 
-      <aside className="toc-wrap">
-        <p className="toc-label">On this page</p>
-
-        <ul className="toc-list">
-          {headings.map((heading) => (
-            <li key={heading.id}>
-              <button
-                onClick={() => handleClick(heading.id)}
-                className={[
-                  "toc-btn",
-                  `level-${Math.min(heading.level, 4)}`,
-                  activeId === heading.id ? "active" : "",
-                ]
-                  .join(" ")
-                  .trim()}
-              >
-                {heading.text}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      <ul className="toc-list">
+        {headings.map((heading) => (
+          <li key={heading.id}>
+            <button
+              onClick={() => handleClick(heading.id)}
+              className={[
+                "toc-btn",
+                `level-${Math.min(heading.level, 4)}`,
+                activeId === heading.id ? "active" : "",
+              ]
+                .join(" ")
+                .trim()}
+            >
+              {heading.text}
+            </button>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };

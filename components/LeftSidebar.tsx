@@ -7,10 +7,14 @@ const LeftSidebar = ({
   allFrontMatter,
   selectedIndex = 0,
   onSelect,
+  mobileOpen = false,
+  onMobileClose,
 }: {
   allFrontMatter: FrontMatter[];
   selectedIndex?: number;
   onSelect?: (index: number) => void;
+  mobileOpen?: boolean;
+  onMobileClose?: () => void;
 }) => {
   const [query, setQuery] = useState("");
 
@@ -30,13 +34,42 @@ const LeftSidebar = ({
           flex-shrink: 0;
           display: flex;
           flex-direction: column;
-          height: 100vh;
+          height: 100%;
           background: #ffffff;
           border-right: 1px solid #ebebf0;
           font-family: 'DM Sans', sans-serif;
           position: sticky;
           top: 0;
           overflow: hidden;
+        }
+
+        /* Mobile drawer behavior */
+        .sidebar-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.35);
+          backdrop-filter: blur(2px);
+          z-index: 40;
+          display: none;
+        }
+
+        @media (max-width: 1023px) {
+          .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100dvh;
+            z-index: 50;
+            transform: translateX(-100%);
+            transition: transform 0.2s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+          }
+          .sidebar.sidebar-open {
+            transform: translateX(0);
+          }
+          .sidebar-overlay {
+            display: block;
+          }
         }
 
         /* ── Brand ── */
@@ -254,7 +287,16 @@ const LeftSidebar = ({
         }
       `}</style>
 
-      <aside className="sidebar">
+      {mobileOpen && (
+        <button
+          type="button"
+          className="sidebar-overlay"
+          aria-label="Close sidebar"
+          onClick={onMobileClose}
+        />
+      )}
+
+      <aside className={`sidebar ${mobileOpen ? "sidebar-open" : ""}`}>
         {/* ── Brand ── */}
         <div className="sidebar-brand">
           <div className="sidebar-logo">
@@ -274,6 +316,26 @@ const LeftSidebar = ({
             <p className="sidebar-title-sub">Knowledge Base</p>
             <h1 className="sidebar-title-main">Docs</h1>
           </div>
+
+          <button
+            type="button"
+            onClick={onMobileClose}
+            className="ml-auto lg:hidden inline-flex items-center justify-center h-8 w-8 rounded-lg border border-[#ebebf0] bg-white text-[#1a1a2e]"
+            aria-label="Close sidebar"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <path d="M18 6 6 18" />
+              <path d="M6 6l12 12" />
+            </svg>
+          </button>
         </div>
 
         {/* ── Search ── */}

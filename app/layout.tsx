@@ -30,7 +30,7 @@ export default async function RootLayout() {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-serif">
+        <div className="flex h-dvh overflow-hidden bg-slate-50 font-serif">
           <PageLayout
             allMarkdownData={markdownFiles}
             allFrontMatter={allFrontMatter}
