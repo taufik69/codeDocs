@@ -97,14 +97,14 @@ export default function DocContent({
         </div>
 
         {/* Content + TOC Grid */}
-        <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] w-full overflow-hidden">
+        <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] w-full overflow-hidden">
           {/* Content Area */}
-          <div className="min-h-0 overflow-y-auto px-4 sm:px-6 lg:px-10 py-6 lg:py-8 scrollbar-slim">
+          <div className="min-h-0 overflow-y-auto  px-4 sm:px-6 lg:px-10 py-6 lg:py-8 scrollbar-slim">
             <Content htmlContent={selectedDoc.htmlContent} />
           </div>
 
           {/* ── RIGHT TOC ── */}
-          <aside className="hidden lg:flex lg:flex-col min-h-0 bg-white border-l border-slate-200 py-8 px-4 overflow-hidden shadow-sm scrollbar-slim">
+          <aside className="hidden lg:flex lg:flex-col min-h-0 bg-white border-l border-slate-200 py-8 px-4 overflow-hidden shadow-sm scrollbar-slim ">
             <div className="shrink-0">
               <p className="px-3 text-[9px] font-mono tracking-widest uppercase text-slate-400 mb-2">
                 On this page
@@ -114,7 +114,7 @@ export default function DocContent({
                 <div className="w-2 h-0.5 bg-slate-300 rounded" />
               </div>
             </div>
-            <div className="flex-1 min-h-0 overflow-y-auto">
+            <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
               <TableOfContents headings={selectedDoc.headings} />
             </div>
           </aside>

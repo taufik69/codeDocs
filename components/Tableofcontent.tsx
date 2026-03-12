@@ -93,6 +93,16 @@ const TableOfContents = ({ headings }: { headings: Heading[] }) => {
           background: #f0f2fd;
          
         }
+        .toc-btn:not(.active):hover::before {
+          content: '';
+          position: absolute;
+          left: -10px;
+          top: 0;
+          bottom: 0;
+          width: 3px;
+          background: #c8d0f8;
+          border-radius: 0 2px 2px 0;
+        }
 
         /* ── ACTIVE STATE ── */
         .toc-btn.active {
